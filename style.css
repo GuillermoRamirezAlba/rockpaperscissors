@@ -1,0 +1,148 @@
+* {
+	font-family: 'mario';
+}
+
+@font-face {
+	font-family: 'mario';
+	src: url("fonts/mario.ttf") format("truetype"),
+	url("fonts/mario.woff") format("woff");
+	/* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+html {
+	background: url(images/marioWallpaper3.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+h1 {
+	border: 4px solid black;
+	border-radius: 10px;
+	vertical-align: middle;
+	background-color: #dbdbdb;
+	font-size: 45px;
+	width: 600px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	padding-left: 20px;
+}
+
+.bigWordsTest {
+	width: 200px;
+	height: 118px;
+}
+
+.outsideBox {
+	/* border: 5px solid red;  */
+	text-align: center;
+}
+
+.outputText {
+	border: 4px solid black;
+	border-radius: 10px;
+	background-color: white;
+	font-family: 'mario';
+	text-align: center;
+	width: 330px;
+	font-size: 30px;
+	padding-bottom: 20px;
+}
+
+.left {
+	border: 4px solid black;
+	border-radius: 10px;
+	float: left;
+	background: #f7d091;
+	width: 450px;
+	height: 380px;
+}
+
+.right {
+	border: 4px solid black;
+	border-radius: 10px;
+	float: left;
+	background: #b1b3b5;
+	width: 450px;
+	height: 380px;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+img {
+	height: 200px;
+	width: auto;
+}
+
+.button {
+	background-color: black;
+	/* Green */
+	border: none;
+	color: white;
+	padding: 5px 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s;
+	/* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	/* width: 100px; */
+}
+
+.button1 {
+	background-color: white;
+	border: 2px solid #e54949;
+	color: black;
+}
+
+.button1:hover {
+	background-color: #e54949;
+	border: 2px solid #e54949;
+	color: white;
+}
+
+.button2 {
+	background-color: white;
+	color: black;
+	border: 2px solid #dde500
+}
+
+.button2:hover {
+	background-color: #dde500;
+	color: black;
+}
+
+.button3 {
+	background-color: white;
+	color: black;
+	border: 2px solid #5da6e2;
+}
+
+.button3:hover {
+	background-color: #5da6e2;
+	border: 2px solid #5da6e2;
+	color: white;
+}
+
+.button4 {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+}
+
+.button4:hover {
+	background-color: black;
+	color: white;
+}

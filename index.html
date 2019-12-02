@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>Lab 7 - Rock, Paper, Scissors. By Guillermo Ramirez</title>
+        <link rel='stylesheet' type='text/css' href='style.css'>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <div class="outsideBox">
+            <div style="width:600px; margin:0 auto;">
+                <h1 class="borderBox" style="background: black;"><span id='rockText'>Rock</span>, <span id='paperText'>Paper</span>,
+                    <span id='scissorsText'>Scissors</span></h1>
+            </div>
+            <div style="width: 950px; margin:0 auto;">
+                <div class="left">
+                    <h2>Player</h2>
+                    <div id="humanDiv">
+                        <img id="humanImage">
+                    </div>
+                    <button id='rockButton' class="button button1">Rock</button>
+                    <button id='paperButton' class="button button2">Paper</button>
+                    <button id='scissorsButton' class="button button3">Scissors</button><br>
+                    <button id='clearButton' class="button button4">Clear Images</button>
+                </div>
+                <div class="right" class="borderBox">
+                    <h2>CPU</h2>
+                    <div id="cpuDiv">
+                        <img id="cpuImage">
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            
+            <div class="outputText" class="borderBox" style="margin: 0 auto;">
+                <div class="bigWordsText">
+                    <h2 id='output'>&nbsp;</h2>
+                </div>
+                <span id="winLabel">Wins: </span><span id='humanWinCount'>0</span><br>
+                <span id="loseLabel">Losses: </span><span id='humanLossCount'>0</span><br>
+                <span id="tieLabel">Ties: </span><span id='tieCount'>0</span><br>
+            </div>
+        </div>
+        <script>
+
+//// Start of EVENT_LISTENERS ////////
+document.getElementById('rockButton').addEventListener('click', function () {
+    play("rock");
+});
+document.getElementById('paperButton').addEventListener('click', function () {
+    play("paper");
+});
+document.getElementById('scissorsButton').addEventListener('click', function () {
+    play("scissors");
+});
+document.getElementById('clearButton').addEventListener('click', function () {
+    hide("clear");
+});
+////////////////////////////////////////
+
+
+////////// Set Header Colors /////////////
+document.getElementById("rockText").style.color = "#d88511";
+document.getElementById("scissorsText").style.color = "#c1c1c1";
+document.getElementById("paperText").style.color = "white";
+//////////////////////////////////////////
+
+
+//////////// GAME LOGIC ///////////////////
+function play(playerChoice) {
+    /* Re-enables images and output text when player presses scissors, rock, or paper buttons */
+    document.getElementById("humanImage").style.visibility = "visible";
+    document.getElementById("cpuImage").style.visibility = "visible";
+    document.getElementById("output").style.visibility = "visible";
+
+    /* Sets output colors to default */
+    document.getElementById("winLabel").style.color = "black";
+    document.getElementById("tieLabel").style.color = "black";
+    document.getElementById("loseLabel").style.color = "black";
+
+    /* Display Player image */
+    if (playerChoice == "rock") {
+        document.getElementById('humanImage').src = 'images/card-rock.png';
+    } else if (playerChoice == "paper") {
+        document.getElementById('humanImage').src = 'images/card-paper.png';
+    } else if (playerChoice == "scissors") {
+        document.getElementById('humanImage').src = 'images/card-scissors.png';
+    }
+
+    /* Function that returns random value from 0 to the parameter "max - 1" */
+    /* Ex:  getRandomInt(3) returns 0, 1 or 2 */
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    /* Declare Variables for Game Logic */
+    var cpuChoice = getRandomInt(3); /* Gets random value from 0 to 2, to determine if cpu chose rock, paper or scissors */
+    var hwc = parseInt(document.getElementById('humanWinCount').innerHTML);     /* Variable to keep track of player wins */
+    var tc = parseInt(document.getElementById('tieCount').innerHTML);           /* Variable to keep track of ties */
+    var hlc = parseInt(document.getElementById('humanLossCount').innerHTML);    /* Variable to keep track of player losses */
+
+
+    if (cpuChoice == 0) { /* CPU chose rock*/
+        document.getElementById('cpuImage').src = 'images/card-rock.png';
+        if (playerChoice == "scissors") {
+            hlc++;
+            document.getElementById('humanLossCount').innerHTML = hlc;
+            document.getElementById('output').innerHTML = 'You Lose!';
+            document.getElementById("output").style.color = "red";
+            document.getElementById("loseLabel").style.color = "red";
+        }
+        else if (playerChoice == "paper") {
+            hwc++;
+            document.getElementById('output').innerHTML = 'You Win!';
+            document.getElementById("output").style.color = "green";
+            document.getElementById("winLabel").style.color = "green";
+            document.getElementById('humanWinCount').innerHTML = hwc;
+        }
+        else if (playerChoice == "rock") {
+            tc++;
+            document.getElementById('output').innerHTML = 'Tie!';
+            document.getElementById("output").style.color = "gray";
+            document.getElementById("tieLabel").style.color = "gray";
+            document.getElementById('tieCount').innerHTML = tc;
+        }
+
+    } else if (cpuChoice == 1) { /*  if CPU chooses paper */
+        document.getElementById('cpuImage').src = 'images/card-paper.png';
+        if (playerChoice == "scissors") {
+            hwc++;
+            document.getElementById('humanWinCount').innerHTML = hwc;
+            document.getElementById('output').innerHTML = 'You Win!';
+            document.getElementById("output").style.color = "green";
+            document.getElementById("winLabel").style.color = "green";
+        }
+        else if (playerChoice == "rock") {
+            hlc++;
+            document.getElementById('humanLossCount').innerHTML = hlc;
+            document.getElementById('output').innerHTML = 'You Lose!';
+            document.getElementById("output").style.color = "red";
+            document.getElementById("loseLabel").style.color = "red";
+        }
+        else if (playerChoice == "paper") {
+            tc++;
+            document.getElementById('output').innerHTML = 'Tie!';
+            document.getElementById("output").style.color = "gray";
+            document.getElementById("tieLabel").style.color = "gray";
+            document.getElementById('tieCount').innerHTML = tc;
+        }
+
+
+    } else if (cpuChoice == 2) { /* CPU chooses scissors */
+        document.getElementById('cpuImage').src = 'images/card-scissors.png';
+        if (playerChoice == "rock") {
+            hwc++;
+            document.getElementById('humanWinCount').innerHTML = hwc;
+            document.getElementById('output').innerHTML = 'You Win!';
+            document.getElementById("output").style.color = "green";
+            document.getElementById("winLabel").style.color = "green";
+        }
+        else if (playerChoice == "paper") {
+            hlc++;
+            document.getElementById('humanLossCount').innerHTML = hlc;
+            document.getElementById('output').innerHTML = 'You Lose!';
+            document.getElementById("output").style.color = "red";
+            document.getElementById("loseLabel").style.color = "red";
+        }
+        else if (playerChoice == "scissors") {
+            tc++;
+            document.getElementById('output').innerHTML = 'Tie!';
+            document.getElementById("output").style.color = "gray";
+            document.getElementById("tieLabel").style.color = "gray";
+            document.getElementById('tieCount').innerHTML = tc;
+        }
+    }
+}
+
+function hide(playerChoice) { /* If player clicks the clearImages button */
+    /* Hide images and set colors to default */
+    if (document.getElementById("humanImage").style.visibility == "visible") {
+        document.getElementById("humanImage").style.visibility = "hidden"
+            document.getElementById("cpuImage").style.visibility = "hidden"
+            document.getElementById("output").style.visibility = "hidden"
+            document.getElementById("winLabel").style.color = "black";
+        document.getElementById("tieLabel").style.color = "black";
+        document.getElementById("loseLabel").style.color = "black";
+    }
+}
+///////////////////////////////////////
+
+        </script>
+    </body>
+
+</html>
